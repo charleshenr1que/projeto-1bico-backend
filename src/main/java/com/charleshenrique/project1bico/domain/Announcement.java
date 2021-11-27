@@ -1,12 +1,14 @@
 package com.charleshenrique.project1bico.domain;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.charleshenrique.project1bico.dto.AuthorDTO;
 
@@ -18,8 +20,11 @@ public class Announcement {
 	private String title;
 	private String imageUrl;
 	private String descricao;
-	private Instant date;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private LocalDate date;
 	private String categoria;
+	private String cidade;
+	private String estado;
 	
 	private AuthorDTO author;
 	
@@ -27,16 +32,18 @@ public class Announcement {
 		
 	}
 
-	public Announcement(String id, String title, String imageUrl, String descricao, Date date, String categoria,
-			AuthorDTO author) {
+	public Announcement(String id, String title, String imageUrl, String descricao, String categoria,
+			AuthorDTO author, String cidade, String estado) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.imageUrl = imageUrl;
 		this.descricao = descricao;
-		this.date = Instant.now();
+		this.date = LocalDate.now();
 		this.categoria = categoria;
 		this.author = author;
+		this.cidade = cidade;
+		this.estado = estado;
 	}
 
 	public String getId() {
@@ -71,11 +78,11 @@ public class Announcement {
 		this.descricao = descricao;
 	}
 
-	public Instant getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Instant date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
@@ -93,6 +100,22 @@ public class Announcement {
 
 	public void setAuthor(AuthorDTO author) {
 		this.author = author;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
 	}
 	
 	

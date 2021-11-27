@@ -60,19 +60,8 @@ public class UserResource {
 	//	return ResponseEntity.ok().body(list);
 	//}
 	
-
-	@GetMapping(value="/login")
-	public ResponseEntity<User> login(@RequestParam String userName, @RequestParam String password) {
-		
-	User user = service.findByNameAndPassword(userName, password);
-		
-	System.out.println(userName);
-	System.out.println("Usuario Logado!");
-	return ResponseEntity.ok().body(user);
-	}
-	
 	@PostMapping(value="/log")
-	public ResponseEntity<User> log(@RequestBody Login login) {
+	public ResponseEntity<User> login(@RequestBody Login login) {
 	System.out.println("------------");
 	User user = service.findByNameAndPassword(login.getUserName(), login.getPassword());
 	if(user != null) {
